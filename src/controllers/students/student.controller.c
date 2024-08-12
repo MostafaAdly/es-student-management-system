@@ -40,3 +40,61 @@ Student* getStudentById(LinkedList *list, uint32 id) {
 	}
 	return NULL;
 }
+
+Student* updateStudent(LinkedList* list, uint32 id){
+	Student *student = getStudentById(list, id);
+	if (student == NULL) return NULL;
+	printStudent(student);
+	Student *updatedStudent = createStudent();
+	updatedStudent->id = id;
+	copyString(updatedStudent->first_name, updatedStudent->first_name);
+	copyString(updatedStudent->last_name, updatedStudent->last_name);
+	student->age = updatedStudent->age;
+	student->gpa = updatedStudent->gpa;
+	return updatedStudent;
+}
+
+float32 getAverageGPA(LinkedList* list){
+	float32 total = 0;
+	Node *current = list->head;
+	while (current != NULL) {
+		if (current->data == NULL) {
+			printf("No student data found.\n");
+			return 0;
+		}
+		Student *student = (Student*) current->data;
+		total += student->gpa;
+		current = current->next;
+	}
+	return total / list->length;
+}
+
+Student* getStudentWithHighestGPA(LinkedList* list){
+	Student *highestGPASudent = NULL;
+	Node *current = list->head;
+	while (current != NULL) {
+		if (current->data == NULL) {
+			printf("No student data found.\n");
+			return NULL;
+		}
+		Student *student = (Student*) current->data;
+		if (highestGPASudent == NULL || student->gpa > highestGPASudent->gpa)
+			highestGPASudent = student;
+		current = current->next;
+	}
+	return highestGPASudent;
+}
+Student* getStudentWithLowestGPA(LinkedList* list){
+	Student *lowestGPASudent = NULL;
+	Node *current = list->head;
+	while (current != NULL) {
+		if (current->data == NULL) {
+			printf("No student data found.\n");
+			return NULL;
+		}
+		Student *student = (Student*) current->data;
+		if (lowestGPASudent == NULL || student->gpa < lowestGPASudent->gpa) lowestGPASudent = student;
+		current = current->next;
+	}
+	return lowestGPASudent;
+}

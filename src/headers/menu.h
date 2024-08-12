@@ -3,3 +3,8 @@ void returnOrExit(LinkedList* list);
 void addStudent(LinkedList *list);
 void displayStudents(LinkedList *list);
 void searchStudentsById(LinkedList* list);
+void updateStudentById(LinkedList* list);
+void deleteStudentById(LinkedList* list);
+void calculateAverageGPA(LinkedList* list);
+void findHighestGPA(LinkedList* list);
+void findLowestGPA(LinkedList* list);
